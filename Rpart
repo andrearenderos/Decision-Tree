@@ -1,0 +1,16 @@
+library(tidyverse)
+mlb_data <- read_csv("https://shorturl.at/iCP15") %>%
+janitor::clean_names() %>%
+mutate_at(vars(bb_percent:k_percent), parse_number)
+head(mlb_data)
+
+
+
+#R part package
+
+library(rpart)
+init_mlb_tree <- rpart(formula = w_oba ~ bb_percent + k_percent + iso,
+data = mlb_data, method = "anova")
+init_mlb_tree 
+
+
